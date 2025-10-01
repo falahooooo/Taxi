@@ -1,0 +1,299 @@
+<body>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Airport Taxi Booking</title>
+<style>
+  :root {
+    --primary-color: #FFC107; /* Elegant Taxi Yellow */
+    --primary-hover: #FFB300;
+    --bg-color: #F5F5F5; /* Light background */
+    --card-bg: #FFFFFF;
+    --text-color: #333;
+    --input-bg: #FAFAFA;
+    --shadow: rgba(0,0,0,0.1);
+    --border-radius: 12px;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    text-align: center;
+  }
+
+  .container {
+    width: 95%;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 20px var(--shadow);
+  }
+
+  .logo {
+    width: 120px;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 2em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  h2 {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+  }
+
+  input, select, button {
+    width: 100%;
+    height: 48px;
+    padding: 0 15px;
+    margin-bottom: 15px;
+    border-radius: var(--border-radius);
+    border: 1px solid #CCC;
+    font-size: 1em;
+    outline: none;
+    background: var(--input-bg);
+    transition: border 0.3s, box-shadow 0.3s;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  input:focus, select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 6px rgba(255,193,7,0.3);
+  }
+
+  button {
+    height: 48px;
+    background: var(--primary-color);
+    color: #333;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  button:hover {
+    background: var(--primary-hover);
+    transform: scale(1.03);
+  }
+
+  .toggle-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .toggle-buttons button {
+    width: 48%;
+    background: #FFFFFF;
+    color: var(--primary-color);
+    font-weight: bold;
+    border: 2px solid var(--primary-color);
+  }
+
+  .toggle-buttons button.active {
+    background: var(--primary-color);
+    color: #333;
+  }
+
+  .language-select {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .language-select select {
+    width: auto;
+    padding: 10px 14px;
+    font-size: 1em;
+    border-radius: var(--border-radius);
+    border: 1px solid #CCC;
+    background: var(--input-bg);
+  }
+
+  .form-section {
+    display: none;
+  }
+
+  .form-section.active {
+    display: block;
+  }
+
+  @media (max-width: 400px) {
+    input, select, button {
+      font-size: 0.95em;
+      padding: 12px;
+    }
+    .logo {
+      width: 100px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- Logo -->
+  <img src="https://via.placeholder.com/120x60?text=Taxi+Logo" alt="Taxi Logo" class="logo">
+
+  <h1 id="title">Airport Taxi Booking</h1>
+
+  <!-- Language Selection -->
+  <div class="language-select">
+    <select id="language">
+      <option value="en" selected>English 🇬🇧</option>
+      <option value="he">Hebrew 🇮🇱</option>
+      <option value="ru">Russian 🇷🇺</option>
+      <option value="ar">Arabic 🇸🇦</option>
+    </select>
+  </div>
+
+  <!-- Form Toggle -->
+  <div class="toggle-buttons">
+    <button id="fromBtn" class="active">From Airport</button>
+    <button id="toBtn">To Airport</button>
+  </div>
+
+  <h2 id="formHeading">From Airport</h2>
+
+  <!-- From Airport Form -->
+  <div id="fromForm" class="form-section active">
+    <input type="text" id="fromName" placeholder="Full Name">
+    <input type="text" id="fromPhone" placeholder="Phone Number">
+    <input type="text" id="fromFlight" placeholder="Flight Number">
+    <input type="text" id="fromAddress" placeholder="Address/City">
+    <input type="date" id="fromDate">
+    <input type="time" id="fromTime">
+    <select id="fromTerminal">
+      <option value="3">Terminal 3, 2nd Floor</option>
+      <option value="1">Terminal 1</option>
+    </select>
+    <select id="fromPassengers">
+      <option value="1">1 Passenger</option>
+      <option value="2">2 Passengers</option>
+      <option value="3">3 Passengers</option>
+      <option value="4">4 Passengers</option>
+      <option value="5">5 Passengers</option>
+      <option value="6">6 Passengers</option>
+      <option value="more">More</option>
+    </select>
+  </div>
+
+  <!-- To Airport Form -->
+  <div id="toForm" class="form-section">
+    <input type="text" id="toName" placeholder="Full Name">
+    <input type="text" id="toPhone" placeholder="Phone Number">
+    <input type="text" id="toFlight" placeholder="Flight Number">
+    <input type="text" id="toAddress" placeholder="Address/City">
+    <input type="date" id="toDate">
+    <input type="time" id="toTime">
+    <select id="toTerminal">
+      <option value="3">Terminal 3, 2nd Floor</option>
+      <option value="1">Terminal 1</option>
+    </select>
+    <select id="toPassengers">
+      <option value="1">1 Passenger</option>
+      <option value="2">2 Passengers</option>
+      <option value="3">3 Passengers</option>
+      <option value="4">4 Passengers</option>
+      <option value="5">5 Passengers</option>
+      <option value="6">6 Passengers</option>
+      <option value="more">More</option>
+    </select>
+  </div>
+
+  <button id="confirmBooking">Confirm Booking</button>
+</div>
+
+<script>
+  const fromBtn = document.getElementById('fromBtn');
+  const toBtn = document.getElementById('toBtn');
+  const fromForm = document.getElementById('fromForm');
+  const toForm = document.getElementById('toForm');
+  const formHeading = document.getElementById('formHeading');
+
+  fromBtn.addEventListener('click', () => {
+    fromForm.classList.add('active');
+    toForm.classList.remove('active');
+    fromBtn.classList.add('active');
+    toBtn.classList.remove('active');
+    formHeading.innerText = currentTranslation.fromAirport;
+  });
+
+  toBtn.addEventListener('click', () => {
+    toForm.classList.add('active');
+    fromForm.classList.remove('active');
+    toBtn.classList.add('active');
+    fromBtn.classList.remove('active');
+    formHeading.innerText = currentTranslation.toAirport;
+  });
+
+  const languageSelect = document.getElementById('language');
+  const translations = {
+    en: { title: 'Airport Taxi Booking', fromAirport: 'From Airport', toAirport: 'To Airport', fullName: 'Full Name', phone: 'Phone Number', flight: 'Flight Number', address: 'Address/City', date: 'Date', time: 'Time', terminal: 'Terminal', passengers: 'Passengers', confirm: 'Confirm Booking', terminalOptions: ['Terminal 3, 2nd Floor', 'Terminal 1'], passengerOptions: ['1 Passenger','2 Passengers','3 Passengers','4 Passengers','5 Passengers','6 Passengers','More'] },
+    he: { title: 'הזמנת מונית לשדה התעופה', fromAirport: 'מהשדה', toAirport: 'לשדה', fullName: 'שם מלא', phone: 'טלפון', flight: 'מספר טיסה', address: 'כתובת/עיר', date: 'תאריך', time: 'שעה', terminal: 'טרמינל', passengers: 'מספר נוסעים', confirm: 'אשר הזמנה', terminalOptions: ['טרמינל 3, קומה 2', 'טרמינל 1'], passengerOptions: ['1 נוסע','2 נוסעים','3 נוסעים','4 נוסעים','5 נוסעים','6 נוסעים','עוד'] },
+    ru: { title: 'Бронирование такси в аэропорт', fromAirport: 'Из аэропорта', toAirport: 'В аэропорт', fullName: 'Полное имя', phone: 'Телефон', flight: 'Номер рейса', address: 'Адрес/Город', date: 'Дата', time: 'Время', terminal: 'Терминал', passengers: 'Количество пассажиров', confirm: 'Подтвердить бронирование', terminalOptions: ['Терминал 3, 2-й этаж','Терминал 1'], passengerOptions: ['1 пассажир','2 пассажира','3 пассажира','4 пассажира','5 пассажиров','6 пассажиров','Больше'] },
+    ar: { title: 'حجز سيارة أجرة للمطار', fromAirport: 'من المطار', toAirport: 'إلى المطار', fullName: 'الاسم الكامل', phone: 'رقم الهاتف', flight: 'رقم الرحلة', address: 'العنوان/المدينة', date: 'التاريخ', time: 'الوقت', terminal: 'المبنى', passengers: 'عدد الركاب', confirm: 'تأكيد الحجز', terminalOptions: ['المبنى 3, الطابق 2','المبنى 1'], passengerOptions: ['1 راكب','2 ركاب','3 ركاب','4 ركاب','5 ركاب','6 ركاب','أكثر'] }
+  };
+  let currentTranslation = translations['en'];
+
+  languageSelect.addEventListener('change', () => {
+    const lang = languageSelect.value;
+    currentTranslation = translations[lang];
+    document.getElementById('title').innerText = currentTranslation.title;
+    fromBtn.innerText = currentTranslation.fromAirport;
+    toBtn.innerText = currentTranslation.toAirport;
+    formHeading.innerText = fromForm.classList.contains('active') ? currentTranslation.fromAirport : currentTranslation.toAirport;
+
+    document.getElementById('fromName').placeholder = currentTranslation.fullName;
+    document.getElementById('fromPhone').placeholder = currentTranslation.phone;
+    document.getElementById('fromFlight').placeholder = currentTranslation.flight;
+    document.getElementById('fromAddress').placeholder = currentTranslation.address;
+    document.getElementById('toName').placeholder = currentTranslation.fullName;
+    document.getElementById('toPhone').placeholder = currentTranslation.phone;
+    document.getElementById('toFlight').placeholder = currentTranslation.flight;
+    document.getElementById('toAddress').placeholder = currentTranslation.address;
+
+    const fromTerm = document.getElementById('fromTerminal');
+    const toTerm = document.getElementById('toTerminal');
+    fromTerm.options[0].text = currentTranslation.terminalOptions[0];
+    fromTerm.options[1].text = currentTranslation.terminalOptions[1];
+    toTerm.options[0].text = currentTranslation.terminalOptions[0];
+    toTerm.options[1].text = currentTranslation.terminalOptions[1];
+
+    const fromPass = document.getElementById('fromPassengers');
+    const toPass = document.getElementById('toPassengers');
+    currentTranslation.passengerOptions.forEach((p, i) => {
+      fromPass.options[i].text = p;
+      toPass.options[i].text = p;
+    });
+
+    document.getElementById('confirmBooking').innerText = currentTranslation.confirm;
+  });
+
+  const confirmBooking = document.getElementById('confirmBooking');
+  confirmBooking.addEventListener('click', () => {
+    let message = '';
+    if(fromForm.classList.contains('active')){
+      message = `${currentTranslation.fromAirport}:\n${currentTranslation.fullName}: ${document.getElementById('fromName').value}\n${currentTranslation.phone}: ${document.getElementById('fromPhone').value}\n${currentTranslation.flight}: ${document.getElementById('fromFlight').value}\n${currentTranslation.address}: ${document.getElementById('fromAddress').value}\n${currentTranslation.date}: ${document.getElementById('fromDate').value}\n${currentTranslation.time}: ${document.getElementById('fromTime').value}\n${currentTranslation.terminal}: ${document.getElementById('fromTerminal').value}\n${currentTranslation.passengers}: ${document.getElementById('fromPassengers').value}`;
+    } else {
+      message = `${currentTranslation.toAirport}:\n${currentTranslation.fullName}: ${document.getElementById('toName').value}\n${currentTranslation.phone}: ${document.getElementById('toPhone').value}\n${currentTranslation.flight}: ${document.getElementById('toFlight').value}\n${currentTranslation.address}: ${document.getElementById('toAddress').value}\n${currentTranslation.date}: ${document.getElementById('toDate').value}\n${currentTranslation.time}: ${document.getElementById('toTime').value}\n${currentTranslation.terminal}: ${document.getElementById('toTerminal').value}\n${currentTranslation.passengers}: ${document.getElementById('toPassengers').value}`;
+    }
+    const whatsappNumber = '+972548030094';
+    const url = `https://wa.me/${whatsappNumber.replace(/\D/g,'')}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  });
+</script>
+</body>
+</html>
